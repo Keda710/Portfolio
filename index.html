@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keval Patel | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#818CF8',
+            light: '#F9FAFB',
+            dark: '#1F2937'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      position: relative;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex space-x-8">
+          <a href="#home" class="text-gray-600 hover:text-primary transition-colors">Home</a>
+          <a href="#about" class="text-gray-600 hover:text-primary transition-colors">About</a>
+          <a href="#projects" class="text-gray-600 hover:text-primary transition-colors">Projects</a>
+          <a href="#research" class="text-gray-600 hover:text-primary transition-colors">Research</a>
+          <a href="#certificates" class="text-gray-600 hover:text-primary transition-colors">Certificates</a>
+          <a href="#contact" class="text-gray-600 hover:text-primary transition-colors">Contact</a>
+        </div>
+        <div class="flex space-x-4">
+          <a href="https://www.linkedin.com/in/keval-patel-6a3249257/" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/keda710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/keval_patel_710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="pt-24 pb-12 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+      <!-- Left Column: Text and Social Links -->
+      <div class="md:w-1/2 text-center md:text-left">
+        <h1 class="text-5xl font-bold text-gray-800 mb-4">Hi, I'm Keval</h1>
+        <p class="text-xl text-gray-600 mb-4">👋 💻 🎾 ☕ 🧠 ❤️</p>
+        <p class="text-xl text-gray-600 mb-8">4th Year CSE @ IIT Mandi | Aspiring Data Scientist</p>
+
+        <!-- Social Links -->
+        <div class="flex justify-center md:justify-start space-x-6 mb-8">
+          <a href="https://www.linkedin.com/in/keval-patel-6a3249257/" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="https://github.com/keda710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/keval_patel_710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+            </svg>
+          </a>
+        </div>
+
+        <a href="#contact" class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-secondary transition-colors text-lg">
+          Contact <span class="ml-2">→</span>
+        </a>
+      </div>
+
+      <!-- Right Column: Profile Photo with background -->
+      <div class="md:w-1/2 flex justify-center relative">
+        <!-- Background Shape (Example: Large Circle) -->
+        <div class="absolute inset-0 flex justify-center items-center">
+           <div class="w-3/4 h-3/4 bg-secondary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+           <div class="w-3/4 h-3/4 bg-primary rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+           <div class="w-3/4 h-3/4 bg-light rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+        </div>
+        <img src="keval.HEIC" alt="Your Photo" class="relative z-10 w-64 h-64 rounded-full object-cover shadow-lg">
+      </div>
+    </div>
+  </header>
+
+  <section id="about" class="py-12 px-4 bg-white">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <!-- Left Column: Image -->
+      <div class="md:w-1/2">
+        <img src="about.jpg" alt="Keval Patel" class="rounded-lg shadow-lg object-cover w-full h-auto max-h-[500px]">
+      </div>
+
+      <!-- Right Column: Text and Details -->
+      <div class="md:w-1/2 text-center md:text-left">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">About</h2>
+        <p class="text-gray-600 mb-8">My Introduction</p>
+        <p class="text-gray-700 text-lg mb-8">
+          I am a passionate and driven Computer Science undergraduate at IIT Mandi with a strong foundation in C++, Python, and Data Structures & Algorithms. My work spans across Machine Learning, Deep Learning, and Vision-Language Models (VLMs), with hands-on experience in applying these techniques to real-world medical imaging problems.I enjoy solving complex problems—whether it's optimizing algorithms, building models, or analyzing datasets—and I'm also deeply interested in finance, data science, and the broader applications of AI in decision-making and risk analysis.I'm always eager to learn, collaborate, and apply my skills to impactful challenges in both tech and finance domains.
+        </p>
+
+        <div class="grid grid-cols-1 gap-4 text-center mb-8">
+          <div>
+            <p class="text-2xl font-bold text-gray-800">8+</p>
+            <p class="text-gray-600">Projects</p>
+          </div>
+        </div>
+
+        <div class="flex justify-center md:justify-start">
+          <a href="#contact" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-lg hover:bg-secondary transition-colors text-lg">
+            Leave a message
+            <span class="ml-2">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800 mb-2">Projects</h2>
+      <p class="text-gray-600">My independent & group projects contributions</p>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto">
+      <!-- Carousel Container -->
+      <div class="overflow-hidden">
+        <div class="flex transition-transform duration-300 ease-in-out" id="projects-carousel">
+
+          <!-- Project Item 5: Carbon Campus -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Image/Visual -->
+              <img src="carbon.png" alt="Carbon Campus Project Visual" class="rounded-lg max-h-80 object-contain">
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">Carbon Campus</h3>
+              <p class="text-sm text-gray-500 mb-4">Feb'24 - May'24</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies: REST API, Dart, Flutter, MongoDB</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>Developed a mobile app to calculate carbon footprint based on user input like energy, food, vehicles and flights.</li>
+                <li>Features a chatbot, powered by the Gemini API, offering personalized suggestions for reducing carbon emissions.</li>
+                <li>Visualizes carbon emissions of college buildings, including mess halls, canteens, and other infrastructure, displaying real-time data.</li>
+                <li>Includes a carbon trading system where users can trade based on their emission amounts.</li>
+                <li>Displays real-time news updates related to carbon emissions and sustainability trends, with integration of the Wren page.</li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/Carbon-Calculator" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Item 4: SecureVue AI -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Video/Visual -->
+              <video src="output_video.mp4" controls muted loop playsinline class="rounded-lg max-h-80 object-contain" autoplay></video>
+              <!-- Remember to replace 'output_video.mp4' with the actual path or URL to your video file -->
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">SecureVue AI</h3>
+              <p class="text-sm text-gray-500 mb-4">Dec'23-Feb'24</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies: LSTM, CNN, LRCN, OpenCV, ReactJS</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>Developed as part of the GDSC Google Solution Challenge, the project focuses on advancing SDG 16.</li>
+                <li>Engineered an AI model for Real-Time CCTV Surveillance to bolster efforts in enhancing security and monitoring.</li>
+                <li>Designed an user-friendly video posting interface and a dynamic community forum for idea exchange.</li>
+                <li>Incorporating the capabilities of CNNs and LSTMs, the system detects criminal activities with 80% accuracy.</li>
+                <li>Applied frame prediction to classify crime types (arson, shootings, road accidents) with 99% accuracy.</li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/Crime-detection" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+                <!-- Add Demo Video Link if available -->
+                <!-- <a href="#" class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                  <span class="mr-2">🎥</span>
+                  Demo Video
+                </a> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Item 3: Disaster Alert System -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Image/Visual -->
+              <img src="disaster.png" alt="Disaster Alert System Project Visual" class="rounded-lg max-h-80 object-contain">
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">🚨 Disaster Alert System</h3>
+              <p class="text-gray-600 mb-4">A responsive web application designed to enhance public safety by providing real-time alerts based on the user's current location. The system classifies alerts into three severity levels and dynamically adjusts based on disaster type and duration.</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies: JavaScript, JSX, Tailwind CSS</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>Implemented a three-tier alert system (Red, Yellow, Green) for different severity levels</li>
+                <li>Developed secure user authentication system with personalized alert preferences</li>
+                <li>Created an Emergency Information page with safety guidelines for various natural disasters</li>
+                <li>Built real-time location-based alert system with dynamic updates</li>
+                <li>Designed responsive UI with Tailwind CSS for optimal user experience across devices</li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/disaster-alert-system/" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Item 3: Guardians of Truth -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Image/Visual -->
+              <img src="img2.jpeg" alt="Guardians of Truth Project Visual" class="rounded-lg max-h-80 object-contain">
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-2">Guardians of Truth (Deepfake Detection and Fake News Check)</h3>
+              <p class="text-sm text-gray-500 mb-4">Dec'23-April'24</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies: CLIP-ViT-L/14, Resnet50, CNN, Fine-Tuning, LSTM, Javascript, FastAPI</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>Implemented Research paper using ProGAN dataset and CLIP (ViT-L/14) for feature extraction, achieving 92.9% and 87% accuracy on Dalle and Glide-100 datasets respectively surpassing SOTA results of 86% and 79%.</li>
+                <li>Built TruthGuard for fake news detection, achieving 92% accuracy utilizing LSTM for sentiment analysis.</li>
+                <li>Integrated Guardian for Deepfake and TruthGuard model into a web platform for real-time updates and verification.</li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/Guardians-of-Truth" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Item 1: Stone-Paper-Scissors -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Image/Visual -->
+              <img src="stone.png" alt="Stone-Paper-Scissors Project Visual" class="rounded-lg max-h-80 object-contain">
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">🎮 AI-powered Stone-Paper-Scissors Game</h3>
+              <p class="text-gray-600 mb-4">This project is an interactive implementation of the classic Stone-Paper-Scissors game using computer vision and Python. The system detects the player's hand gesture in real time using OpenCV and CVZone, classifies it as Stone, Paper, or Scissors, and pits it against the computer's randomly selected move. The game then calculates the result and updates the score dynamically.</p>
+              <p class="text-gray-600 mb-4">This project demonstrates the integration of real-time image processing, gesture recognition, and basic game logic, providing an engaging and educational example of how AI and CV can be used to bring traditional games to life.</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies Used: Python, OpenCV, CVZone, MediaPipe (optional), NumPy</p>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/Stone-Paper-Scissors" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Item 2: NAKAL -->
+          <div class="flex-shrink-0 w-full flex flex-col md:flex-row items-center gap-8 bg-white p-8 rounded-lg shadow-lg">
+            <div class="md:w-1/2 flex justify-center">
+              <!-- Project Image/Visual -->
+              <img src="nakal.gif" alt="NAKAL Project Visual" class="rounded-lg max-h-80 object-contain">
+            </div>
+            <div class="md:w-1/2 text-left">
+              <h3 class="text-2xl font-bold text-gray-800 mb-4">📊 NAKAL: A Unified Training Framework for Table Recognition</h3>
+              <p class="text-gray-600 mb-4">A novel framework designed to streamline and unify the process of table recognition (TR) by combining a task-agnostic architecture, a unified training objective, and a consistent training paradigm.</p>
+              <p class="text-gray-600 mb-4 font-semibold">Technologies: PyTorch, torchvision, tokenizers, PIL, BeautifulSoup, Matplotlib, IPython, HTML, Python</p>
+              <ul class="list-disc list-inside text-gray-600 space-y-2 mb-6 ml-4">
+                <li>Developed a unified framework that tackles three core TR tasks: table structure extraction, cell content recognition, and cell bounding box prediction</li>
+                <li>Implemented self-supervised pretraining (SSP) on diverse unannotated tabular images</li>
+                <li>Created a single language modeling objective to handle multiple TR tasks</li>
+                <li>Designed a task-agnostic architecture that relies solely on pixel-level inputs</li>
+                <li>Achieved scalability, robustness, and simplicity in extracting structured data from tables</li>
+              </ul>
+              <div class="flex gap-4">
+                <a href="https://github.com/Keda710/NAKAL" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                  <span class="mr-2">🔗</span>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow duration-300 z-10 ml-4" onclick="prevProject()"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+      <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md hover:shadow-lg transition-shadow duration-300 z-10 mr-4" onclick="nextProject()"><svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+
+      <!-- Pagination Dots -->
+      <div class="flex justify-center mt-8 space-x-2" id="pagination-dots">
+        <span class="w-3 h-3 bg-primary rounded-full cursor-pointer" onclick="goToProject(0)"></span>
+        <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer" onclick="goToProject(1)"></span>
+        <span class="w-3 h-3 bg-gray-300 rounded-full cursor-pointer" onclick="goToProject(2)"></span>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="py-12 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">🧠 Research Projects</h2>
+
+      <div class="space-y-8">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Explainability and Chain-of-Thought in Vision-Language Models for Medical Imaging</h3>
+            <p class="text-gray-600 mb-4">
+              In this research, we investigated how to enhance the explainability, clinical trust, and reasoning ability of Vision-Language Models (VLMs) in medical imaging applications—particularly for tasks like chest X-ray interpretation and medical visual question answering. We focused on integrating both explainability techniques and Chain-of-Thought (CoT) prompting to address the growing need for transparent and reliable AI systems in healthcare.
+            </p>
+            <p class="text-gray-600 mb-4">
+              To improve interpretability, we leveraged LLaVA-Rad, a vision-language model tailored for radiology, and augmented it with Chain-of-Thought prompting. This allowed the model to generate intermediate reasoning steps while producing diagnostic reports, enhancing both logical structure and factual correctness. The step-by-step reasoning closely resembled the diagnostic thought process used by radiologists, making the AI's predictions more transparent and trustworthy. <a href="https://arxiv.org/pdf/2406.11451" target="_blank" class="text-primary hover:underline">(Paper)</a>
+            </p>
+            <div class="mt-4">
+              <img src="Explability.png" alt="Explainability Results" class="w-full max-w-2xl max-h-[400px] object-contain mx-auto rounded-lg shadow-md" />
+            </div>
+            <p class="text-gray-600 mb-4">
+              In parallel, we explored explainability in the multimodal BioMedCLIP model using Integrated Gradients, a gradient-based attribution method. By applying this technique, we were able to visualize which specific regions in chest X-rays contributed most to the model's predictions. These visual explanations aligned well with expert annotations, allowing clinicians to better understand the model's decision-making process and increasing its usability in real-world scenarios. <a href="https://arxiv.org/pdf/2303.00915" target="_blank" class="text-primary hover:underline">(Paper)</a>
+            </p>
+             <p class="text-gray-600 mb-4">
+              To further align VLM behavior with clinical standards, we developed MMedPO (Multimodal Medical Preference Optimization)—a novel training pipeline that fine-tunes models based on clinically-aware preference pairs. We curated two types of data: text-based pairs created by introducing factual hallucinations via GPT-4, and image-based pairs generated by injecting noise into lesion areas. These preference datasets were scored for clinical relevance using collaborative setups (for text) and visual heatmaps (for images). During fine-tuning, we used normalized clinical relevance scores as weights, giving higher influence to examples deemed more clinically important. This approach allowed the model to prioritize learning from data that truly matters in a medical context. <a href="https://arxiv.org/pdf/2412.06141" target="_blank" class="text-primary hover:underline">(Paper)</a>
+            </p>
+            <div class="mt-4">
+              <img src="MMedPo.png" alt="MMedPO Results" class="w-full max-w-2xl max-h-[400px] object-contain mx-auto rounded-lg shadow-md" />
+            </div>
+
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">Technologies and Tools Used:</h4>
+            <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+              <li>🧠 LLaVA-Rad (Radiology-specific VLM)</li>
+              <li>🧬 BioMedCLIP (ViT + PubMedBERT)</li>
+              <li>🧠 Chain-of-Thought Prompt Engineering</li>
+              <li>🛠️ Integrated Gradients (Torch-based)</li>
+              <li>🎯 MMedPO (Preference-weighted fine-tuning)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates" class="py-12 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Certificates & Achievements</h2>
+
+      <div class="space-y-4">
+        <!-- JEE Achievements -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-semibold text-gray-800">📚 Joint Entrance Examination (JEE) Achievements</h3>
+              <span class="text-sm text-gray-500">Aug'22</span>
+            </div>
+            <div class="space-y-2">
+              <p class="text-gray-600">• JEE Advanced: Rank 2798</p>
+              <p class="text-gray-600">• JEE Mains: Rank 7826 with 99.18% percentile</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kaggle Achievement -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-semibold text-gray-800">🥈 Kaggle LLM Detect AI-Generated Text Competition</h3>
+              <span class="text-sm text-gray-500">Jan'24</span>
+            </div>
+            <div class="space-y-2">
+              <p class="text-gray-600">• Silver Medal - Top 3% Global Ranking</p>
+              <p class="text-gray-600">• Placed 150th out of over 5000 teams worldwide</p>
+              <p class="text-gray-600">• Competed in the highly competitive LLM Detect AI-Generated Text challenge</p>
+            </div>
+            <div class="mt-4">
+              <a href="keval710 - LLM - Detect AI Generated Text.png" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                <span class="mr-2">📄</span>
+                View Certificate
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-gray-800">🥇 1st in D.I.S.R.U.P. – Case Study Innovation Challenge by E-Cell, IIT Mandi</p>
+            <span class="text-sm text-gray-500">Oct'22</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-semibold text-gray-800">🏢 JPMorgan Chase & Co. Quantitative Research Virtual Experience</h3>
+              <span class="text-sm text-gray-500">Feb'25</span>
+            </div>
+            <p class="text-gray-600">Completed a simulation focused on quantitative research methods:</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
+              <li>Analyzed a book of loans to estimate a customers probability of default</li>
+              <li>Used dynamic programming to convert FICO scores into categorical data to predict defaults</li>
+            </ul>
+            <div class="mt-4">
+              <a href="JPMC_Certificate.pdf" target="_blank" class="inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors">
+                <span class="mr-2">📄</span>
+                View Certificate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership" class="py-12 px-4 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Leadership & Activities</h2>
+
+      <div class="space-y-6">
+        <!-- Tennis Club -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-semibold text-gray-800">🎾 IIT Mandi Lawn Tennis Club</h3>
+            <span class="text-sm text-gray-500">Aug'23 - Aug'24</span>
+          </div>
+          <div class="space-y-2">
+            <p class="text-gray-600">• Coordinator of the IIT Mandi Lawn Tennis Club</p>
+            <p class="text-gray-600">• Represented IIT Mandi in the Inter-IIT Sport Meet</p>
+          </div>
+        </div>
+
+        <!-- Exodia Fest -->
+        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-xl font-semibold text-gray-800">🎪 Exodia'23 - Largest Fest of Himalayas</h3>
+            <span class="text-sm text-gray-500">Feb'23 - May'23</span>
+          </div>
+          <div class="space-y-2">
+            <p class="text-gray-600">• Core Team Member for Planning and Management Team</p>
+            <p class="text-gray-600">• Contributed to the organization and execution of the largest cultural fest in the Himalayas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificate Modal -->
+  <div id="certificateModal" class="modal" onclick="closeCertificate()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeCertificate()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <img src="JPMC_Certificate.pdf" alt="ML Course Certificate" class="w-full h-auto rounded-lg" />
+    </div>
+  </div>
+
+  <section id="contact" class="py-12 px-4 bg-blue-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8">Get In Touch</h2>
+
+      <!-- Social Media Icons -->
+      <div class="flex justify-center space-x-6 mb-8">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/keval-patel-6a3249257/" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/keda710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/keval_patel_710" target="_blank" class="text-gray-600 hover:text-primary transition-colors">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+          </svg>
+        </a>
+      </div>
+
+      <hr class="w-24 h-1 mx-auto bg-gray-300 border-0 rounded md:my-10">
+
+      <!-- Contact Details -->
+      <div class="flex flex-col items-center space-y-4 mb-8">
+        <!-- Email 1 -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0 text-primary">
+            <span class="text-2xl">📧</span>
+          </div>
+          <div>
+            <p class="text-gray-600">keval7102004@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- Email 2 -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0 text-primary">
+            <span class="text-2xl">📧</span>
+          </div>
+          <div>
+            <p class="text-gray-600">b22119@students.iitmandi.ac.in</p>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0 text-primary">
+            <span class="text-2xl">📱</span>
+          </div>
+          <div>
+            <p class="text-gray-600">+91-9426677111</p>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="flex items-center space-x-3">
+          <div class="flex-shrink-0 text-primary">
+            <span class="text-2xl">📍</span>
+          </div>
+          <div>
+            <p class="text-gray-600">Ahmedabad, Gujarat, India</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="w-24 h-1 mx-auto bg-gray-300 border-0 rounded md:my-10">
+
+       <div class="mt-8 text-center text-gray-600 text-sm">
+         <p>&copy; 2024 Keval Patel. All rights reserved.</p>
+       </div>
+
+    </div>
+  </section>
+
+  <script>
+    function openCertificate() {
+      document.getElementById('certificateModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertificate() {
+      document.getElementById('certificateModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeCertificate();
+      }
+    });
+
+    // Carousel Functionality (Add this part)
+    const carousel = document.getElementById('projects-carousel');
+    const dotsContainer = document.getElementById('pagination-dots');
+    const projectItems = carousel.querySelectorAll('.flex-shrink-0');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+      updateDots();
+    }
+
+    function updateDots() {
+      dotsContainer.innerHTML = ''; // Clear existing dots
+      projectItems.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('w-3', 'h-3', 'rounded-full', 'cursor-pointer');
+        if (index === currentIndex) {
+          dot.classList.add('bg-primary');
+          dot.classList.remove('bg-gray-300');
+        } else {
+          dot.classList.add('bg-gray-300');
+          dot.classList.remove('bg-primary');
+        }
+        dot.onclick = () => goToProject(index);
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function nextProject() {
+      currentIndex = (currentIndex + 1) % projectItems.length;
+      updateCarousel();
+    }
+
+    function prevProject() {
+      currentIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
+      updateCarousel();
+    }
+
+    function goToProject(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    // Initial setup
+    updateDots();
+  </script>
+
+</body>
+</html>
